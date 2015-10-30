@@ -8,7 +8,7 @@ $item = $item[$_GET["key"]];
 <?php
 
 //Load the file
-$contents = file_get_contents('data.txt');
+$items = file_get_contents('data.txt');
 
 //Decode the JSON data into a PHP array.
 $contentsDecoded = json_decode($contents, true);
