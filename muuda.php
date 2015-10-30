@@ -4,7 +4,7 @@ $item = json_decode(file_get_contents("data.txt"), 2);
 $item = $item[$_GET["key"]];
 
 ?>
-<form role="form" action="saada.php" method="post" enctype="multipart/form-data">
+<form role="form" action="saada2.php" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="comment">nimi</label>
        <textarea name="nimi" class="form-control" rows="5" id="comment"><?=$item["nimi"]?></textarea>
