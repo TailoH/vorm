@@ -11,7 +11,7 @@ $item = $item[$_GET["key"]];
 $items = file_get_contents('data.txt');
 
 //Decode the JSON data into a PHP array.
-$contentsDecoded = json_decode($contents, true);
+$contentsDecoded = json_decode($items, true);
 
 //Modify the counter variable.
 $contentsDecoded['counter']++;
@@ -21,4 +21,6 @@ $json = json_encode($contentsDecoded);
 
 //Save the file.
 file_put_contents('data.txt', $json);
+
+header("Location: index.php");
 ?>
