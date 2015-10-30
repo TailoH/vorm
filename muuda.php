@@ -4,26 +4,40 @@ $item = json_decode(file_get_contents("data.txt"), 2);
 $item = $item[$_GET["key"]];
 
 ?>
-<form role="form" action="saada2.php" method="post" enctype="multipart/form-data">
-    <div class="form-group">
-      <label for="comment">nimi</label>
-       <textarea name="nimi" class="form-control" rows="5" id="comment"><?=$item["nimi"]?></textarea>
-    </div>
-	    <div class="form-group">
-      <label for="comment">sugu</label>
-       <textarea name="sugu" class="form-control" rows="5" id="comment"><?=$item["sugu"]?></textarea>
-    </div>
-    <div class="form-group">
-      <label for="comment">Lühikirjeldus endast</label>
-       <textarea name="kirjeldus" class="form-control" rows="5" id="comment"><?=$item["kirjeldus"]?></textarea>
-    </div>
-	    <div class="form-group">
-      <label for="comment">sisseasutmine</label>
-       <textarea name="sisseastumine" class="form-control" rows="5" id="comment"><?=$item["sisseastumine"]?></textarea>
-    </div>
-	    <div class="form-group">
-      <label for="comment">lemmikõpeaine</label>
-       <textarea name="lemmikopeaine" class="form-control" rows="5" id="comment"><?=$item["lemmikopeaine"]?></textarea>
-    </div>
-	<button type="submit" class="btn btn-default"> Muuda </button>
+<?php
+if (isset($_POST['submit'])) {
+
+$myFile = "data.txt";
+$fh = fopen($myFile, 'w') or die("can't open file");
+$stringData = stripslashes($_POST['sf']);
+fwrite($fh, $stringData);
+fclose($fh);
+
+header('Location: index.php');
+
+}
+?>
+<form action="" method="post">
+<textarea name="sf" cols="40" rows="6">
+<?php
+$myFile = "data.txt";
+$fh = fopen($myFile, 'r');
+$theData = fgets($fh);
+fclose($fh);
+echo $theData;
+?></textarea>
+<br />
+<input type="submit" name="submit" value="Edit" />
 </form>
+<?php
+if ($_GET['a'] == 'done') {
+echo 'The file was saved and now it says:<br /><br />';
+
+$myFile = "data.txt";
+$fh = fopen($myFile, 'r');
+$theData = fgets($fh);
+fclose($fh);
+echo $theData;
+
+}
+?>
